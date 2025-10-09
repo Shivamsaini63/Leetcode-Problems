@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0) return false;
+        int reversed=0;
+        int original=x;
+        while(x!=0){
+            int lastDigit=x%10;
+            //Check overflow
+            if(reversed>(Integer.MAX_VALUE-lastDigit)/10) return false;
+            reversed=(reversed*10)+lastDigit;
+            x=x/10;
+        }
+        return original==reversed;
+    }
+}
