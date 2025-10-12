@@ -1,0 +1,36 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+       int [][]matrix=new int [n][n];
+       int topR=0;
+       int bottomR=n-1;
+       int leftC=0;
+       int rightC=n-1;
+       int num=1;
+       while(rightC>=leftC && bottomR>=topR){
+        //traverse from left to right 
+        for (int i=leftC; i<=rightC; i++)
+         matrix[topR][i]=num++;
+         topR++;
+
+         //Traverse from top to bottom 
+         for (int i=topR; i<=bottomR; i++)
+          matrix[i][rightC]=num++;
+          rightC--;
+
+          //Traverse from right to left
+          if (bottomR>=topR){
+            for (int i=rightC; i>=leftC; i--)
+             matrix[bottomR][i]=num++;
+             bottomR--;
+          }
+
+          //Traverse from bottom to top
+          if (rightC>=leftC){
+            for (int i=bottomR; i>=topR; i--)
+             matrix[i][leftC]=num++;
+             leftC++;
+          }
+       }
+         return matrix;
+    }
+}
