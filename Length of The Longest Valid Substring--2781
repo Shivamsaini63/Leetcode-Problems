@@ -1,0 +1,25 @@
+class Solution {
+    public int longestValidSubstring(String word, List<String> forbidden) {
+        int left = 0;
+        int ans = 0;
+
+        // forbidden ko fast lookup ke liye
+        HashSet<String> set = new HashSet<>(forbidden);
+
+        for (int right = 0; right < word.length(); right++) {
+
+            // sirf last 10 characters check
+            for (int j = right; j >= left && j >= right - 9; j--) {
+
+                if (set.contains(word.substring(j, right + 1))) {
+                    left = j + 1;
+                    break;
+                }
+            }
+
+            ans = Math.max(ans, right - left + 1);
+        }
+
+        return ans;
+    }
+}
