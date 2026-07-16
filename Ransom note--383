@@ -1,0 +1,49 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int n=ransomNote.length();
+        int m=magazine.length();
+        // int a=0;
+        // for(int i=0; i<n; i++){
+        //     char ch=ransomNote.charAt(i);
+        //     if(magazine.indexOf(ch)!=-1){
+        //        if(ransomNote.indexOf(ch)!=ransomNote.lastIndexOf(ch) && magazine.indexOf(ch)!=magazine.lastIndexOf(ch)){
+        //         a++;
+        //        }
+        //        else if(ransomNote.indexOf(ch)==ransomNote.lastIndexOf(ch) && magazine.indexOf(ch)==magazine.lastIndexOf(ch)){
+        //         a++;
+        //        }
+        //        else if(ransomNote.indexOf(ch)==ransomNote.lastIndexOf(ch) && magazine.indexOf(ch)!=-1){
+        //         a++;
+        //        }
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
+        // if(a==n){
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+        char[] a=ransomNote.toCharArray();
+        char[] b=magazine.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+        int i=0;
+        int j=0;
+        while(i<n && j<m){
+            if(a[i]==b[j]){
+                i++;
+                j++;
+            }
+            else if(a[i]>b[j]){
+                j++;
+            }
+            else{
+                return false;
+            }
+        }
+        return i==n;
+    }
+}
