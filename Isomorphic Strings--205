@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        int a=0;
+        if(s.length()!=t.length()){
+            return false;
+        }
+        for(int i=0; i<s.length(); i++){
+            char ch=s.charAt(i);
+            char chh=t.charAt(i);
+            int c=s.indexOf(ch);
+            if(c!=i){
+                if(t.charAt(c)==t.charAt(i)){
+                    a++;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                if(t.indexOf(chh)!=i){
+                    return false;
+                }
+                else{
+                    a++;
+                }
+            }
+        }
+        return a==s.length();
+    }
+}
