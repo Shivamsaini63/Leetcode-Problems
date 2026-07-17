@@ -1,0 +1,41 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String word[]=s.split(" ");
+        int a=0;
+        if(word.length!=pattern.length()){
+            return false;
+        }
+        for(int i=0; i<pattern.length(); i++){
+            char ch=pattern.charAt(i);
+            int c=pattern.indexOf(ch);
+            if(c!=i){
+                if(word[i].equals(word[c])){
+                    a++;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                int d=0;
+                if(i==0){
+                    a++;
+                }
+                else{
+                  for(int j=i-1; j>=0; j--){
+                   if(!word[i].equals(word[j])){
+                    d++;
+                   }
+                  }
+                  if(d==i){
+                    a++;
+                  }
+                  else{
+                    return false;
+                  }
+                }
+            }
+        }
+        return a==pattern.length();
+    }
+}
